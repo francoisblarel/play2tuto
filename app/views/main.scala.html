@@ -30,9 +30,9 @@
                     @flash.get("success")
                 </div>
             }
-            @if(flash.get("success").isDefined){
+            @if(flash.get("error").isDefined){
                 <div class="alert alert-error">
-                    @flash.get("success")
+                    @flash.get("error")
                 </div>
             }
             @content

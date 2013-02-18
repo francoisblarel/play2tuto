@@ -5,8 +5,8 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /products                   controllers.Products.list
-GET     /:ean                       controllers.Products.show(ean : Long)
 GET     /products/new               controllers.Products.newProduct
+GET     /:ean                       controllers.Products.show(ean : Long)
 POST    /products                   controllers.Products.save
 
 # Map static resources from the /public folder to the /assets URL path

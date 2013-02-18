@@ -41,6 +41,7 @@ object Products extends Controller{
           ("error" -> Messages("validation.errors")))
       },
       success = { newProduct =>
+        Product.add(newProduct)
         Redirect(routes.Products.show(newProduct.ean)).
           flashing("success" -> Messages("products.new.success", newProduct.name))
       }
