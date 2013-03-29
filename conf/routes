@@ -4,6 +4,8 @@
 
 # Home page
 GET     /                           controllers.Application.index
+GET     /login                      controllers.LoginController.login
+POST    /login                      controllers.LoginController.doLogin
 GET     /products                   controllers.Products.list
 GET     /products/new               controllers.Products.newProduct
 GET     /:ean                       controllers.Products.show(ean : Long)
