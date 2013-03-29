@@ -1,0 +1,43 @@
+package controllers
+
+import play.api.mvc.{Action, Controller}
+import play.api.data.Form
+import play.api.data.Forms._
+
+/**
+ * User: fblarel
+ * Date: 29/03/13 
+ */
+case class User(login : String, password : String)
+
+object LoginController extends Controller{
+
+  private val loginForm : Form[User] = Form(
+    mapping(
+      "login" -> nonEmptyText,
+      "password" -> nonEmptyText
+    )(User.apply)(User.unapply)
+  )
+
+  def login = Action{ implicit request =>
+    Ok(views.html.authenticate(this.loginForm))
+  }
+
+
+  def doLogin() = Action{ implicit request =>
+    this.loginForm.bindFromRequest().fold(
+      hasErrors = {
+        form =>
+          Redirect(routes.LoginController.login()).flashing("error" -> "Login incorrect")
+      },
+      success = {
+        userConnected =>
+
+          Redirect(routes.Products.list())
+            .flashing("success" -> ("Bienvenue " +userConnected.login))
+            .withSession(request.session + ("userConnected" -> userConnected.login))
+      }
+    )
+  }
+
+}
