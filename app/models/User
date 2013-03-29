@@ -1,0 +1,13 @@
+package models
+
+/**
+ * User: fblarel
+ * Date: 29/03/13 
+ */
+case class User(login : String, password : String)
+
+object User {
+
+  def exists(user : User) : Boolean = true
+
+}
