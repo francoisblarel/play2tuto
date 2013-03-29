@@ -3,13 +3,12 @@ package controllers
 import play.api.mvc.{Action, Controller}
 import play.api.data.Form
 import play.api.data.Forms._
+import models.User
 
 /**
  * User: fblarel
  * Date: 29/03/13 
  */
-case class User(login : String, password : String)
-
 object LoginController extends Controller{
 
   private val loginForm : Form[User] = Form(
@@ -20,7 +19,7 @@ object LoginController extends Controller{
   )
 
   def login = Action{ implicit request =>
-    Ok(views.html.authenticate(this.loginForm))
+    Ok(views.html.authenticate(loginForm))
   }
 
 
